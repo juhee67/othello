@@ -18,7 +18,7 @@ void main (){
 	int number;				// number of flipped index
 	int turn;
 	char color;
-	int invalid 			// invalid deployment 
+	int invalid;			// invalid deployment 
 	int a;					// for row index
 	int b;					// for col index
 	int deployment[N][N];	// deployment
