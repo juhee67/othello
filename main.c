@@ -6,7 +6,7 @@
 int gameboard[N][N];
 void init_othello(char gmaeboard[][N]);
 void print_othello(char gmaeboard[][N]);
-int valid_index(char gmaeboard[][N], int deployment[][N], char turn);
+int valid_index(char gmaeboard[][N], int deployment[][N]);
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
@@ -16,6 +16,9 @@ void main (){
 	int row;				// row of gameboard
 	int col;				// col of gameboard
 	int number;				// number of flipped index
+	int turn;
+	char color;
+	int invalid 			// invalid deployment 
 	int a;					// for row index
 	int b;					// for col index
 	int deployment[N][N];	// deployment
@@ -39,22 +42,32 @@ void main (){
 	{
 		print_othello();				// print deployment
 		
-		if(valid_index(gameboard, deployment, 'O'))
-			continue;
-		printf("put a new white othello : \n");
-		scanf("%d %d", &a, &b);
-				
+	    for(turn=0;turn<32;turn++){
+			
+			if(valid_index(gameboard, deployment))
+				continue;
+				if((turn % 2 == 0)){
+					color = white;
+				}
+				else{
+					color = Black;
+				}
+					printf("put a new %s othello : \n", color);
+					scanf("%d %d", &a, &b);		
+					gameboard[a][b] = (turn % 2 == 0) ? 'O' : 'X';
 		 
-		if(a>=0 && b>=0 && a<N && b<N && deployment[a][b])		// check input coordinates
-			if()												// reverse
-			{
-				printf("::flip result::\n");
-				printf("W:%d E:%d N:%d S:%d NW:%d NE:%d SW:%d SE:%d\n", );
-				printf("White has flipped %d othellos!", number);	// number of flipped index
+			if(a>=0 && b>=0 && a<N && b<N && deployment[a][b])		// check input coordinates
+				if()												// reverse
+				{
+					printf("::flip result::\n");
+					printf("W:%d E:%d N:%d S:%d NW:%d NE:%d SW:%d SE:%d\n", );
+					printf("flipped %d othellos!\n", number);	// number of flipped index
 															// change turn
-			}
-		else
-			printf("invalid input!");					// invalid input coordinates
+				}
+			else
+				printf("invalid input!");	
+							// invalid input coordinates
+		}
 	}
 	check_result();										// print result
 	
